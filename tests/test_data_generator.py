@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Testes unitários — módulo de geração de dados.
 Execute com:  pytest tests/ -v

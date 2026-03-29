@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Testes unitários — Solver Exato (PLI via PuLP).
 

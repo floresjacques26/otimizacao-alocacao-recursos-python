@@ -18,11 +18,13 @@
 
 ## Resumo Executivo
 
-Projeto de otimização de alocação de recursos sob restrições de orçamento e horas de equipe,
-modelado como Mochila Multidimensional 0-1 (NP-difícil).
-Compara três abordagens — Programação Linear Inteira (exata), Heurística Gulosa e Algoritmo Genético —
-avaliando lucro obtido, tempo de execução e gap percentual em relação ao ótimo global.
-Aplicável diretamente a seleção de projetos de P&D, priorização de investimentos e planejamento operacional.
+Projeto de otimização de alocação de recursos sob restrições de orçamento e horas de equipe, modelado como um problema de Mochila Multidimensional 0-1 (0-1 Multidimensional Knapsack Problem, NP-hard).
+
+O projeto compara três abordagens — Programação Linear Inteira (método exato), Heurística Gulosa e Algoritmo Genético — quantificando o desempenho em termos de lucro obtido, tempo de execução e gap percentual em relação ao ótimo global, evidenciando o trade-off entre qualidade da solução e custo computacional.
+
+Aplicável diretamente a cenários industriais, como seleção de projetos de P&D, priorização de investimentos e planejamento operacional.
+
+> O trabalho demonstra, na prática, como diferentes estratégias de otimização se comportam em problemas combinatórios reais.
 
 ---
 

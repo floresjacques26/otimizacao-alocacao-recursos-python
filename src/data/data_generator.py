@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Módulo de geração de dados simulados para o problema de alocação de recursos.
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 =============================================================================
    OTIMIZACAO DE ALOCACAO DE RECURSOS EM PROJETOS

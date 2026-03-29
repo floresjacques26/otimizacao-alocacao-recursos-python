@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Testes unitários — Solver Heurístico: Algoritmo Genético.
 

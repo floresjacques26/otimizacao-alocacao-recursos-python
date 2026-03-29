@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Solver Exato: Programação Linear Inteira (PLI) via PuLP + CBC.
 
