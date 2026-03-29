@@ -35,7 +35,7 @@ Aplicável diretamente a cenários industriais, como seleção de projetos de P&
 | P&D / Inovação | Selecionar projetos de pesquisa dentro do orçamento anual |
 | Manufatura | Priorizar ordens de produção com capacidade de mão-de-obra limitada |
 | Financeiro | Escolher investimentos com maior retorno dado um capital disponível |
-| Logística | Alocar equipes e horas em rotas ou clientes de maior valor |
+| Logística | Otimizar a alocação de recursos humanos e horas de trabalho em rotas ou clientes com maior impacto operacional e financeiro. |
 | TI / Produto | Priorizar features do backlog com time e sprint limitados |
 
 ---
