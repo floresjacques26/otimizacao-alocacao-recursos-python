@@ -6,6 +6,9 @@
 # Interface web
 streamlit>=1.32.0
 
+# Testes
+pytest>=8.0.0
+
 # Otimização (solver de Programação Linear Inteira)
 pulp>=2.7.0
 
