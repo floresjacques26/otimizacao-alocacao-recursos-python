@@ -10,6 +10,12 @@
 
 ---
 
+## 🚀 Acesse o Dashboard Online
+
+👉 **https://industrial-optimization-dashboard.streamlit.app/**
+
+---
+
 ## Resumo Executivo
 
 Projeto de otimização de alocação de recursos sob restrições de orçamento e horas de equipe,
