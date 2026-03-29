@@ -1,6 +1,6 @@
 # 📊 Otimização de Alocação de Recursos em Projetos
 
-> Dashboard interativo para comparação entre Programação Linear Inteira (PLI), Heurística Gulosa e Algoritmo Genético aplicados ao Problema da Mochila Multidimensional.
+> Imagine que você tem vários projetos, mas não pode fazer todos. Essa aplicação ajuda a escolher quais valem mais a pena, considerando dinheiro e tempo disponíveis, comparando diferentes formas de tomar essa decisão.
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.32%2B-FF4B4B?logo=streamlit)](https://streamlit.io)
@@ -266,3 +266,11 @@ Dados gerados sinteticamente com distribuições uniformes; comparação control
 ---
 
 *Projeto desenvolvido como portfólio para pesquisa em otimização combinatória.*
+
+---
+
+## 👤 Autor
+
+Alexandre Flores Jacques
+🔗 LinkedIn: https://www.linkedin.com/in/alexandre-jacques-237857256
+🔗 GitHub: https://github.com/floresjacques26
