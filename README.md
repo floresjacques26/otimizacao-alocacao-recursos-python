@@ -1,50 +1,57 @@
 # 📊 Otimização de Alocação de Recursos em Projetos
 
-> **Dashboard interativo para comparação entre solução exata (PLI) e heurísticas (Greedy e Algoritmo Genético) aplicadas a um problema clássico de otimização combinatória.**
+> Dashboard interativo para comparação entre Programação Linear Inteira (PLI), Heurística Gulosa e Algoritmo Genético aplicados ao Problema da Mochila Multidimensional.
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.32%2B-FF4B4B?logo=streamlit)](https://streamlit.io)
 [![PuLP](https://img.shields.io/badge/PuLP-2.7%2B-green)](https://coin-or.github.io/pulp/)
+[![Tests](https://img.shields.io/badge/tests-58%20passed-brightgreen)](tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## 📌 Sobre o Projeto
+## Resumo Executivo
 
-Uma empresa precisa decidir **quais projetos executar** dentro de um orçamento limitado e com uma equipe com disponibilidade restrita de horas. Este projeto modela e resolve esse problema como uma **Mochila Multidimensional 0-1** — um problema NP-difícil clássico em otimização combinatória.
-
-Três abordagens são implementadas e comparadas:
-
-| Método | Tipo | Garantia | Complexidade |
-|--------|------|----------|-------------|
-| Programação Linear Inteira (PLI) | Exato | Ótimo global | NP-difícil |
-| Heurística Gulosa (Greedy) | Heurística | Nenhuma | O(n log n) |
-| Algoritmo Genético (AG) | Meta-heurística | Nenhuma | O(G × P × n) |
+Projeto de otimização de alocação de recursos sob restrições de orçamento e horas de equipe,
+modelado como Mochila Multidimensional 0-1 (NP-difícil).
+Compara três abordagens — Programação Linear Inteira (exata), Heurística Gulosa e Algoritmo Genético —
+avaliando lucro obtido, tempo de execução e gap percentual em relação ao ótimo global.
+Aplicável diretamente a seleção de projetos de P&D, priorização de investimentos e planejamento operacional.
 
 ---
 
-## 🖥️ Dashboard Interativo
+## Aplicações Industriais
 
-O projeto inclui um dashboard web completo construído com **Streamlit**:
+| Setor | Problema análogo |
+|-------|-----------------|
+| P&D / Inovação | Selecionar projetos de pesquisa dentro do orçamento anual |
+| Manufatura | Priorizar ordens de produção com capacidade de mão-de-obra limitada |
+| Financeiro | Escolher investimentos com maior retorno dado um capital disponível |
+| Logística | Alocar equipes e horas em rotas ou clientes de maior valor |
+| TI / Produto | Priorizar features do backlog com time e sprint limitados |
 
-### Tela inicial — Problema e formulação matemática
-![Problema](results/distribuicao_projetos.png)
+---
 
-### Comparação entre os três métodos
-![Comparacao](results/comparacao_grande.png)
+## Dashboard Interativo
+
+### Comparação dos métodos — cenário grande (100 projetos)
+![Comparação](results/comparacao_grande.png)
 
 ### Convergência do Algoritmo Genético
-![Convergencia](results/convergencia_ag_grande.png)
+![Convergência](results/convergencia_ag_grande.png)
 
-### Projetos selecionados por método (heatmap)
+### Projetos selecionados por método (heatmap — cenário pequeno)
 ![Heatmap](results/projetos_selecionados.png)
 
-### Comparação entre cenários (pequeno, médio, grande)
-![Cenarios](results/comparacao_cenarios.png)
+### Distribuição dos dados simulados
+![Distribuição](results/distribuicao_projetos.png)
+
+### Desempenho comparativo entre cenários
+![Cenários](results/comparacao_cenarios.png)
 
 ---
 
-## 🧮 Formulação Matemática
+## Formulação Matemática
 
 **Variáveis de decisão:**
 
@@ -64,7 +71,42 @@ $$x_i \in \{0, 1\} \quad \forall i$$
 
 ---
 
-## 📁 Estrutura do Projeto
+## Resultados Experimentais
+
+Todos os experimentos foram realizados com `seed=42`, utilização de 55% dos recursos totais.
+
+### Cenário Pequeno — 10 projetos · Orçamento R$ 268 · 187h
+
+| Método | Lucro Total | Gap vs Ótimo | Tempo |
+|--------|-------------|-------------|-------|
+| PLI (Exato) | **R$ 844** | 0% | ~23 ms |
+| Greedy | R$ 818 | 3,1% | < 1 ms |
+| Genético (AG) | **R$ 844** | 0% | ~150 ms |
+
+### Cenário Médio — 30 projetos · Orçamento R$ 975 · 457h
+
+| Método | Lucro Total | Gap vs Ótimo | Tempo |
+|--------|-------------|-------------|-------|
+| PLI (Exato) | **R$ 2.551** | 0% | ~20 ms |
+| Greedy | **R$ 2.551** | 0% | ~1 ms |
+| Genético (AG) | **R$ 2.551** | 0% | ~620 ms |
+
+### Cenário Grande — 100 projetos · Orçamento R$ 3.157 · 1.490h
+
+| Método | Lucro Total | Gap vs Ótimo | Tempo |
+|--------|-------------|-------------|-------|
+| PLI (Exato) | **R$ 8.085** | 0% | ~125 ms |
+| Greedy | R$ 7.998 | 1,1% | ~2 ms |
+| Genético (AG) | R$ 8.077 | 0,1% | ~700 ms |
+
+**Principais achados:**
+- O PLI garante a solução ótima em todos os cenários com tempo inferior a 200 ms
+- O Greedy é ~60× mais rápido que o PLI com perda média de 1–3%
+- O AG encontra soluções quasi-ótimas (gap < 0,2%) no cenário grande
+
+---
+
+## Estrutura do Projeto
 
 ```
 otimizacao-alocacao-recursos-python/
@@ -84,14 +126,20 @@ otimizacao-alocacao-recursos-python/
 │   └── visualization/
 │       └── plots.py                # Gráficos matplotlib/seaborn
 │
-├── results/                        # Gráficos gerados automaticamente
+├── tests/                          # 58 testes unitários (pytest)
+│   ├── test_data_generator.py
+│   ├── test_exact_solver.py
+│   ├── test_greedy_solver.py
+│   └── test_genetic_solver.py
+│
+├── results/                        # 12 gráficos gerados automaticamente
 └── .streamlit/
     └── config.toml                 # Tema do dashboard
 ```
 
 ---
 
-## 🚀 Como Rodar
+## Como Rodar
 
 ### Pré-requisitos
 
@@ -101,7 +149,7 @@ otimizacao-alocacao-recursos-python/
 
 ```bash
 # 1. Clonar o repositório
-git clone https://github.com/seu-usuario/otimizacao-alocacao-recursos-python.git
+git clone https://github.com/floresjacques26/otimizacao-alocacao-recursos-python.git
 cd otimizacao-alocacao-recursos-python
 
 # 2. Criar ambiente virtual (recomendado)
@@ -113,7 +161,7 @@ venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 ```
 
-### Rodar o Dashboard Web
+### Dashboard Web
 
 ```bash
 streamlit run app.py
@@ -121,109 +169,92 @@ streamlit run app.py
 
 Acesse **http://localhost:8501** no navegador.
 
-### Rodar via Terminal (sem interface)
+### Terminal (sem interface)
 
 ```bash
 python main.py
 ```
 
----
+### Testes
 
-## 📊 Resultados Obtidos
-
-Executando com `seed=42` nos três cenários disponíveis:
-
-### Cenário Pequeno — 10 projetos
-
-| Método | Lucro Total | Gap vs Ótimo | Tempo |
-|--------|-------------|-------------|-------|
-| PLI (Exato) | R$ 844 | 0% | ~23ms |
-| Greedy | R$ 818 | 3.1% | < 1ms |
-| Genético (AG) | R$ 844 | 0% | ~150ms |
-
-### Cenário Grande — 100 projetos
-
-| Método | Lucro Total | Gap vs Ótimo | Tempo |
-|--------|-------------|-------------|-------|
-| PLI (Exato) | R$ 8.085 | 0% | ~125ms |
-| Greedy | R$ 7.998 | 1.1% | ~2ms |
-| Genético (AG) | R$ 8.077 | 0.1% | ~700ms |
-
-**Principais conclusões:**
-- O **PLI** garante a solução ótima em todos os cenários testados
-- O **Greedy** é ~60× mais rápido e perde em média apenas 1–3%
-- O **AG** encontra soluções quasi-ótimas (gap < 0.5%) no cenário grande
-
----
-
-## 🔬 Análise de Complexidade
-
-```
-PLI (Branch & Bound):
-  Complexidade: NP-difícil no pior caso
-  Prático: muito rápido para instâncias < 500 variáveis graças ao solver CBC
-  Uso: quando a otimalidade é obrigatória
-
-Greedy O(n log n):
-  Dominado pela ordenação
-  Escala para milhares de projetos sem problema
-  Uso: decisões em tempo real, instâncias muito grandes
-
-Algoritmo Genético O(G × P × n):
-  G=300 gerações, P=100 população, n=projetos
-  Parâmetros configuráveis no dashboard
-  Uso: instâncias grandes onde PLI é lento e Greedy perde qualidade
+```bash
+pytest tests/ -v
 ```
 
 ---
 
-## 🛠️ Tecnologias
+## Análise de Complexidade
 
-| Biblioteca | Versão | Uso |
-|-----------|--------|-----|
-| [Streamlit](https://streamlit.io) | ≥ 1.32 | Interface web interativa |
-| [PuLP](https://coin-or.github.io/pulp/) | ≥ 2.7 | Modelagem e solução PLI |
-| [NumPy](https://numpy.org) | ≥ 1.24 | Operações vetorizadas no AG |
-| [Pandas](https://pandas.pydata.org) | ≥ 2.0 | Manipulação dos dados |
-| [Matplotlib](https://matplotlib.org) | ≥ 3.7 | Visualizações |
-| [Seaborn](https://seaborn.pydata.org) | ≥ 0.12 | Heatmap de seleção |
+| Método | Complexidade | Otimalidade | Escalabilidade |
+|--------|-------------|-------------|----------------|
+| PLI (Branch & Bound) | NP-difícil | ✅ Garantida | Até ~500 variáveis |
+| Greedy | O(n log n) | ❌ Nenhuma | ✅ Excelente |
+| Algoritmo Genético | O(G × P × n) | ❌ Nenhuma | ✅ Boa (configurável) |
 
 ---
 
-## 🚀 Publicar Online (Streamlit Community Cloud)
+## Tecnologias
 
-1. Faça push do projeto para um repositório **público** no GitHub
+| Biblioteca | Uso |
+|-----------|-----|
+| [Streamlit](https://streamlit.io) | Interface web interativa |
+| [PuLP](https://coin-or.github.io/pulp/) | Modelagem e solução PLI com solver CBC |
+| [NumPy](https://numpy.org) | Operações vetorizadas no Algoritmo Genético |
+| [Pandas](https://pandas.pydata.org) | Manipulação dos dados de projetos |
+| [Matplotlib](https://matplotlib.org) | Visualizações e gráficos |
+| [Seaborn](https://seaborn.pydata.org) | Heatmap de seleção de projetos |
+| [pytest](https://pytest.org) | Testes unitários (58 testes) |
+
+---
+
+## Publicar Online (Streamlit Community Cloud)
+
+1. Faça push para um repositório **público** no GitHub
 2. Acesse [share.streamlit.io](https://share.streamlit.io)
-3. Conecte sua conta GitHub
-4. Selecione o repositório e o arquivo `app.py`
-5. Clique em **Deploy** — em poucos minutos terá um link público
+3. Conecte o repositório e selecione `app.py`
+4. Clique em **Deploy** — link público em ~2 minutos
 
 ---
 
-## 🔭 Possíveis Melhorias
+## Considerações Finais
 
-- [ ] **GRASP** — Greedy Randomized Adaptive Search
-- [ ] **Simulated Annealing** com cooling schedule
-- [ ] **NSGA-II** — otimização multi-objetivo (lucro × risco)
-- [ ] Dependências entre projetos (restrições de precedência)
-- [ ] Exportar resultados em CSV/JSON
-- [ ] Testes unitários com pytest
+### Hipótese
+Algoritmos exatos encontram soluções ótimas para instâncias de tamanho moderado, enquanto heurísticas oferecem trade-offs competitivos de qualidade versus tempo em instâncias maiores.
+
+### Metodologia
+Dados gerados sinteticamente com distribuições uniformes; comparação controlada com seed fixo; três cenários com 10, 30 e 100 projetos; métrica principal: gap percentual em relação ao ótimo PLI.
+
+### Limitações
+- Dados sintéticos não capturam correlações reais entre variáveis de projeto
+- O AG sem ajuste fino de hiperparâmetros pode não atingir sua capacidade máxima
+- Instâncias acima de 500 projetos não foram avaliadas
+
+### Trabalhos Futuros
+- Implementação de GRASP e Simulated Annealing para comparação ampliada
+- Otimização multi-objetivo (lucro × risco) com NSGA-II
+- Dados reais de portfólios de projetos industriais
+- Avaliação em instâncias de benchmark da literatura (OR-Library)
 
 ---
 
-## 📚 Referências
+## Referências
 
 - Kellerer, H., Pferschy, U., & Pisinger, D. (2004). *Knapsack Problems*. Springer.
-- Goldberg, D. E. (1989). *Genetic Algorithms in Search, Optimization, and Machine Learning*.
+- Goldberg, D. E. (1989). *Genetic Algorithms in Search, Optimization, and Machine Learning*. Addison-Wesley.
 - Mitchell, M. (1998). *An Introduction to Genetic Algorithms*. MIT Press.
 - [Documentação PuLP](https://coin-or.github.io/pulp/)
 
 ---
 
-## 👤 Autor
+## Possíveis Melhorias
 
-Desenvolvido como projeto de portfólio para pesquisa em otimização combinatória.
+- [ ] GRASP — Greedy Randomized Adaptive Search
+- [ ] Simulated Annealing com cooling schedule adaptativo
+- [ ] NSGA-II — otimização multi-objetivo (lucro × risco)
+- [ ] Dependências entre projetos (restrições de precedência)
+- [ ] Deploy automático com GitHub Actions
+- [ ] Benchmark com instâncias da OR-Library
 
 ---
 
-*Se este projeto foi útil, deixe uma ⭐ no repositório!*
+*Projeto desenvolvido como portfólio para pesquisa em otimização combinatória.*
