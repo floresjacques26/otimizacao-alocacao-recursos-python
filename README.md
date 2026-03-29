@@ -245,12 +245,12 @@ Dados gerados sinteticamente com distribuições uniformes; comparação control
 
 ---
 
-## Referências
+## 📚 Referências Teóricas e Técnicas
 
-- Kellerer, H., Pferschy, U., & Pisinger, D. (2004). *Knapsack Problems*. Springer.
-- Goldberg, D. E. (1989). *Genetic Algorithms in Search, Optimization, and Machine Learning*. Addison-Wesley.
-- Mitchell, M. (1998). *An Introduction to Genetic Algorithms*. MIT Press.
-- [Documentação PuLP](https://coin-or.github.io/pulp/)
+- Kellerer, H., Pferschy, U., & Pisinger, D. (2004). *Knapsack Problems*. Springer. — referência principal sobre o Problema da Mochila e suas variantes (0-1, multidimensional, fracionária), base teórica do problema modelado neste projeto.
+- Goldberg, D. E. (1989). *Genetic Algorithms in Search, Optimization, and Machine Learning*. Addison-Wesley. — obra fundacional de algoritmos genéticos; base para os operadores de seleção, cruzamento e mutação implementados.
+- Mitchell, M. (1998). *An Introduction to Genetic Algorithms*. MIT Press. — introdução acessível à teoria evolutiva aplicada à otimização combinatória; utilizada como referência didática para o AG deste projeto.
+- [Documentação PuLP](https://coin-or.github.io/pulp/) — biblioteca Python utilizada para modelagem e resolução do problema de Programação Linear Inteira via solver CBC (Branch & Bound).
 
 ---
 
